@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-start">Action</th>
+                <th class="text-end">Symbol</th>
+                <th class="text-end">Price</th>
+                <th class="text-end">Share Number</th>
+                <th class="text-end">Timestamp</th>
+                <th class="text-end">Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+                <tr>
+                    <td class="text-start">{{ row.action }}</td>
+                    <td class="text-end">{{ row.item_symbol }}</td>
+                    <td class="text-end">{{ row.price }}</td>
+                    <td class="text-end">{{ row.share_number }}</td>
+                    <td class="text-end">{{ row.purchase_date }}</td>
+                    <td class="text-end">{{ row.balance }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

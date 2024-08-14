@@ -1,0 +1,151 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Student Management System
+{% endblock %}
+{% block nav_title %} {{ role.capitalize() }} Dashboard {% endblock %}
+{% block navbar %}
+
+{% endblock %}
+<!-- {% block aside %}
+
+{% endblock %} -->
+{% block main %}
+<div class="main-board">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="user-title">
+                    <p>
+                        <span>{{ role.capitalize() }} Name:</span>
+                        <span class="role-name">{{ user.name }}</span>
+                    </p>
+                    <p>
+                        {% if not role == 'admin' %}
+                        <span>{{ role.capitalize() }} Number:</span>
+                        <span class="role-number">{{'%06d' % id }}</span>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-sm-12 col-md-6">
+                <h3 class="inner-header"><span>{{ role.capitalize() }} Users Management</span></h3>
+                <br>
+                <!-- Add new course table -->
+                <fieldset class="border p-2">
+                    <legend class="float-none w-auto p-2">Add New User</legend>
+                    <form action="/users-admin" method="post">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td class="d-block d-sm-table-cell">
+                                        <input type="text" name="username" id="username" placeholder="username"
+                                            autocomplete="off" class="form-control mx-auto form-component-width">
+                                    </td>
+                                    <td class="d-block d-sm-table-cell">
+                                        <input type="text" name="name" id="name" placeholder="Fisrt Name"
+                                            autocomplete="off" class="form-control mx-auto form-component-width">
+                                    </td>
+                                    <td class="d-block d-sm-table-cell">
+                                        <input type="text" name="last_name" id="last_name" placeholder="Last Name"
+                                            autocomplete="off" class="form-control mx-auto form-component-width">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="d-block d-sm-table-cell">
+                                        <input type="email" name="email" id="email" placeholder="Email Address"
+                                            autocomplete="off" class="form-control mx-auto form-component-width">
+                                    </td>
+                                    <td class="d-block d-sm-table-cell">
+                                        <select name="user_type" id="user_type"
+                                            class="form-control mx-auto form-component-width">
+                                            <option value="" selected disabled>Role</option>
+                                            {% for user_type in user_type %}
+                                            <option value="{{ user_type}}">{{ user_type }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </td>
+                                    <td class="d-block d-sm-table-cell">
+                                        <button
+                                            class="btn btn-primary form-control d-block mx-auto form-component-width"
+                                            type="submit" name="action" value="add">Add</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <input type="hidden" name="formType" value="addUser">
+                    </form>
+                </fieldset>
+
+                <!-- search table -->
+                <fieldset class="border p-2">
+                    <legend class="float-none w-auto p-2">Delete User</legend>
+                    <form action="/users-admin" method="post">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th colspan="2" class="d-none d-sm-table-cell">User username</th>
+                                    <th class="d-none d-sm-table-cell">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="2" class="d-block d-sm-table-cell">
+                                        <input type="search" name="userno" id="userno"
+                                            placeholder="User username or User Number" autocomplete="off"
+                                            class="form-control mx-auto form-component-width">
+                                    </td>
+                                    <td class="d-block d-sm-table-cell">
+                                        <button
+                                            class="btn btn-primary form-control d-block mx-auto form-component-width"
+                                            type="submit" value="search" name="action">Search</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            {% if search_result %}
+                            <tbody>
+                                <tr>
+                                    <td class="d-block d-sm-table-cell">
+                                        <input type="text"  id="username" placeholder="username"
+                                            autocomplete="off" class="form-control mx-auto form-component-width" value="{{search_result.username}}" readonly>
+                                    </td>
+                                    <td class="d-block d-sm-table-cell">
+                                        <input type="text"  id="name" placeholder="Fisrt Name"
+                                            autocomplete="off" class="form-control mx-auto form-component-width" value="{{search_result.name}}" readonly>
+                                    </td>
+                                    <td class="d-block d-sm-table-cell">
+                                        <input type="text"  id="last_name" placeholder="Last Name"
+                                            autocomplete="off" class="form-control mx-auto form-component-width" value="{{search_result.last_name}}" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="d-block d-sm-table-cell">
+                                        <input type="email"  id="email" placeholder="Email Address"
+                                            autocomplete="off" class="form-control mx-auto form-component-width" value="{{search_result.email}}" readonly>
+                                    </td>
+                                    <td class="d-block d-sm-table-cell">
+                                        <input type="text"  id="role" placeholder="role"
+                                            autocomplete="off" class="form-control mx-auto form-component-width" value="{{search_result.role}}" readonly>
+                                    </td>
+                                    <td class="d-block d-sm-table-cell">
+                                        <input type="hidden" name="user_id" value="{{search_result.id}}">
+                                        <button
+                                            class="btn btn-primary form-control d-block mx-auto form-component-width"
+                                            type="submit" name="action" value="delete">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            {% endif %}
+                        </table>
+                        <input type="hidden" name="formType" value="deleteForm">
+                    </form>
+                </fieldset>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

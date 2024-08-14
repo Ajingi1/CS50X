@@ -1,0 +1,137 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Student Management System
+{% endblock %}
+{% block nav_title %} {{ role.capitalize() }} Dashboard {% endblock %}
+{% block navbar %}
+
+{% endblock %}
+<!-- {% block aside %}
+
+{% endblock %} -->
+{% block main %}
+<div class="main-board">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="user-title">
+                    <p>
+                        <span>{{ role.capitalize() }} Name:</span>
+                        <span class="role-name">{{ user.name }}</span>
+                    </p>
+                    <p>
+                        {% if not role == 'admin' %}
+                        <span>{{ role.capitalize() }} Number:</span>
+                        <span class="role-number">{{'%06d' % id }}</span>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-sm-12 col-md-6">
+                <h3 class="inner-header"><span>{{ role.capitalize() }} Courses Management</span></h3>
+                <br>
+                <!-- Add new course table -->
+                <fieldset class="border p-2">
+                    <legend class="float-none w-auto p-2">Add Course</legend>
+                    <form action="/courses-admin" method="post">
+                        <table class="table table-bordered">
+                            <colgroup class="d-none d-sm-table-cell">
+                                <col>
+                                <col>
+                                <col>
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th class="d-none d-sm-table-cell">Course Code</th>
+                                    <th class="d-none d-sm-table-cell">Course Name</th>
+                                    <th class="d-none d-sm-table-cell">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="d-block d-sm-table-cell">
+                                        <input type="text" name="CourseCode" id="CourseCode" placeholder="Course Code"
+                                            autocomplete="off" class="form-control mx-auto form-component-width">
+                                    </td>
+                                    <td class="d-block d-sm-table-cell">
+                                        <input type="text" name="CourseName" id="CourseName" placeholder="Course Name"
+                                            autocomplete="off" class="form-control mx-auto form-component-width">
+                                    </td>
+                                    <td class="d-block d-sm-table-cell">
+                                        <button
+                                            class="btn btn-primary form-control d-block mx-auto form-component-width"
+                                            type="submit" name="action" value="add">Add</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <input type="hidden" name="formType" value="addForm">
+                    </form>
+                </fieldset>
+
+                <!-- search table -->
+                <fieldset class="border p-2">
+                    <legend class="float-none w-auto p-2">Delete Course</legend>
+                    <form action="/courses-admin" method="post">
+                        <table class="table table-bordered">
+                            <colgroup class="d-none d-sm-table-cell">
+                                <col>
+                                <col>
+                                <col>
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th colspan="2" class="d-none d-sm-table-cell">Course Code or Course Name</th>
+                                    <!-- <th></th> -->
+                                    <th class="d-none d-sm-table-cell">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="2" class="d-block d-sm-table-cell">
+                                        <input type="text" name="searchCourse" id="CourseCode"
+                                            placeholder="Course Code or Course Name" autocomplete="off"
+                                            class="form-control mx-auto form-component-width">
+                                    </td>
+                                    <td class="d-block d-sm-table-cell">
+                                        <button
+                                            class="btn btn-primary form-control d-block mx-auto form-component-width"
+                                            type="submit" value="search" name="action">Search</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            {% if search_result %}
+                            <thead >
+                                <tr>
+                                    <th class="d-none d-sm-table-cell">Course Code</th>
+                                    <th class="d-none d-sm-table-cell">Course Name</th>
+                                    <th class="d-none d-sm-table-cell">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="d-block d-sm-table-cell">{{ search_result.course_code }}</td>
+                                    <td class="d-block d-sm-table-cell">{{ search_result.course_name }}</td>
+                                    <td class="d-block d-sm-table-cell">
+                                        <input type="hidden" name="course_id" value="{{search_result.id}}">
+                                        <button
+                                            class="btn btn-primary form-control d-block mx-auto form-component-width"
+                                            type="submit" value="delete" name="action">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            {% endif %}
+                        </table>
+                        <input type="hidden" name="formType" value="deleteForm">
+                    </form>
+                </fieldset>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

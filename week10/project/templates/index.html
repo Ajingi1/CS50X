@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Student Management System
+{% endblock %}
+{% block nav_title %} {{ role.capitalize() }} Dashboard {% endblock %}
+{% block navbar %}
+
+{% endblock %}
+<!-- {% block aside %}
+
+{% endblock %} -->
+{% block main %}
+<div class="main-board">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="user-title">
+                    <p>
+                        <span>{{ role.capitalize() }} Name:</span>
+                        <span class="role-name">{{ user.name }}</span>
+                    </p>
+                    <p>
+                        {% if not role == 'admin' %}
+                        <span>{{ role.capitalize() }} Number:</span>
+                        <span class="role-number">{{'%06d' % id }}</span>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-6 dashboard-main">
+                <div class="user-info">
+                    <h3 class="inner-header"><span>{{ role.capitalize() }} Information</span></h3>
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>{{ role.capitalize() }} Username:</td>
+                                <td>{{ user.username }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ role.capitalize() }} Name:</td>
+                                <td>{{ user.name }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ role.capitalize() }} Last Name:</td>
+                                <td>{{ user.last_name }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ role.capitalize() }} Class Name:</td>
+                                <td>className</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                {% if role == 'student' %}
+                    <h3 class="inner-header"><span>{{ role.capitalize() }} Current Term Courses</span></h3>
+                    <table class="table table-bordered">
+                        <colgroup>
+                            <col>
+                            <col>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>Course Code</th>
+                                <th>Course Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for course in courses %}
+                            <tr>
+                                <td>{{ course.course_code }}</td>
+                                <td>{{ course.course_name }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

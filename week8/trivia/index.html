@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+            // run js script when DOM is loaded
+            document.addEventListener('DOMContentLoaded', function(){
+
+                // when correct answer is clicked for part one
+                let result = document.querySelector('#result-1');
+                document.querySelector('.correct').onclick = function() {
+                    result.innerHTML = "Correct";
+                    result.style.color = "green";
+                    document.querySelector('.correct').style.backgroundColor = "green";
+                }
+
+                // when incorrect answer is clicked
+                // selectorAll is selecting list so we will use for loop
+                let incorrect = document.querySelectorAll('.incorrect');
+                for (let i = 0; i < incorrect.length; i++){
+                    incorrect[i].onclick = function(){
+                        incorrect[i].style.backgroundColor = "red";
+                        result.innerHTML = "incorrect";
+                        result.style.color = "red";
+                    }
+                }
+
+
+
+
+                // when correct answer is clicked for part two
+                let result2 = document.querySelector('#result-2');
+                let inputValue = document.querySelector('#part-2-input');
+                document.querySelector('#btn-part2').onclick = function() {
+                    if (inputValue.value.toLowerCase() == "switzerland"){
+                        result2.innerHTML = "Correct";
+                        result2.style.color = "green";
+                        // document.querySelector('#btn-part2').style.backgroundColor = "green";
+                        inputValue.style.backgroundColor = 'green';
+                    }
+                    else{
+                        result2.innerHTML = "incorrect";
+                        result2.style.color = "red";
+                        // document.querySelector('#btn-part2').style.backgroundColor = "red";
+                        inputValue.style.backgroundColor = 'red';
+                    }
+
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                <h3>What is the approximate ratio of people to sheep in New Zealand?</h3>
+                <div>
+                    <button class="incorrect">6 people per 1 sheep</button>
+                    <button class="incorrect">3 people per 1 sheep</button>
+                    <button class="incorrect">1 people per 1sheep</button>
+                    <button class="incorrect">1 person per 3 sheep</button>
+                    <button class="correct">1 person per 6 sheep</button>
+                </div>
+                <p id="result-1"></p>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <!-- TODO: Add free response question here -->
+                <h3>In which country is it illegal to won only one guinea pig, as a lone guinea pig might get lonely?</h3>
+                <input type="text" name="answer" id="part-2-input">
+                <button id="btn-part2">Check Answer</button>
+                <p id="result-2"></p>
+            </div>
+        </div>
+    </body>
+</html>

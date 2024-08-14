@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Student Management System
+{% endblock %}
+{% block nav_title %} {{ role.capitalize() }} Dashboard {% endblock %}
+{% block navbar %}
+
+{% endblock %}
+<!-- {% block aside %}
+
+{% endblock %} -->
+{% block main %}
+<div class="main-board">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <div class="user-title">
+                    <p>
+                        <span>{{ role.capitalize() }} Name:</span>
+                        <span class="role-name">{{ user.name }}</span>
+                    </p>
+                    <p>
+                        <span>{{ role.capitalize() }} Number:</span>
+                        <span class="role-number">{{'%06d' % id }}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                {% if role == 'student' %}
+                <h3 class="inner-header"><span>{{ role.capitalize() }} Current Registered Courses</span></h3>
+                <div class="available-courses">
+                    <table class="table table-bordered">
+                        <colgroup class="d-none d-sm-table-cell">
+                            <col>
+                            <col>
+                            <col>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th class="d-none d-sm-table-cell">Course Code</th>
+                                <th class="d-none d-sm-table-cell">Course Name</th>
+                                <th class="d-none d-sm-table-cell">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for course in currentCourses %}
+                            <tr>
+                                <td class="d-block d-sm-table-cell">{{ course.course_code }}</td>
+                                <td class="d-block d-sm-table-cell">{{ course.course_name }}</td>
+                                <td class="d-block d-sm-table-cell">
+                                    <form action="/courses" method="post">
+                                        <input type="hidden" name="course_id_delete" value="{{course.id}}">
+                                        <input type="hidden" name="formType" value="unregisterCourse">
+                                        <button
+                                            class="btn btn-primary form-control d-block mx-auto form-component-width"
+                                            type="submit" name="action" value="delete">delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+            </div>
+            <div class="col-sm-12 col-md-6">
+                {% if role == 'student' %}
+                <h3 class="inner-header"><span>{{ role.capitalize() }} Current Term Available Courses</span></h3>
+                <div class="available-courses">
+                    <table class="table table-bordered">
+                        <colgroup class="d-none d-sm-table-cell">
+                            <col>
+                            <col>
+                            <col>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th class="d-none d-sm-table-cell">Course Code</th>
+                                <th class="d-none d-sm-table-cell">Course Name</th>
+                                <th class="d-none d-sm-table-cell">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% set enrolled_courses = currentCourses | map(attribute='id') | list %}
+                            {% for course in courses %}
+                                {% if course.id not in enrolled_courses %}
+                            <tr>
+                                <td class="d-block d-sm-table-cell">{{ course.course_code }}</td>
+                                <td class="d-block d-sm-table-cell">{{ course.course_name }}</td>
+                                <td class="d-block d-sm-table-cell">
+                                    <form action="/courses" method="post">
+                                        <input type="hidden" name="course_id_add" value="{{course.id}}">
+                                        <input type="hidden" name="formType" value="registerCourse">
+                                        <button
+                                            class="btn btn-primary form-control d-block mx-auto form-component-width"
+                                            type="submit" value="add" name="action">Add</button>
+                                    </form>
+                                </td>
+                            </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

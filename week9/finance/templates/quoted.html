@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <table class="quoted-table">
+        <thead>
+            <tr>
+                <!-- <th scope="col">Name</th> -->
+                <th scope="col">Symbol</th>
+                <th scope="col">value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+                <tr>
+                    <!-- <td>{{ stock.name }}</td> -->
+                    <td>{{ stock.symbol }}</td>
+                    <td>{{ stock.price }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

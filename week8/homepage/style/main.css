@@ -1,0 +1,151 @@
+/*  Global style */
+body{
+    background: #eceeef;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+/* Nav bar */
+.navbar-brand{
+    /* color: #000; */
+    font-weight: bolder;
+    font-size: large;
+}
+.navbar-container{
+    z-index: 2;
+}
+
+/* second section */
+.jumbotron{
+    background: none;
+    text-align: center;
+}
+.carousel-section{
+    margin-bottom: 20px;
+}
+
+/* senction three */
+.section-three h1{
+    text-align: center;
+    padding-bottom: 1rem;
+    font-weight: bolder;
+    margin: 0px;
+}
+.section-three{
+    /* padding: 2rem; */
+    color: #000;
+    background-color: #cccccc;
+    margin: auto;
+}
+.card-body{
+    text-align: center;
+    background-color: inherit;
+}
+.card{
+    margin: auto;
+}
+.department-row div.col-md-6{
+    padding-bottom: 1.5rem;
+}
+.dpt-btn{
+    margin: auto;
+    margin-bottom: 1rem;
+}
+
+
+
+/* About us styles */
+.admin-block-img{
+    display: inline-block;
+}
+
+.about-sec{
+    padding: 20px;
+}
+/* .about-sec h2{
+    text-align: center;
+} */
+.about-sec li{
+    list-style-type: decimal;
+}
+
+
+/* department  */
+
+.card-body-department{
+    /* padding: 0px; */
+    font-weight: bold;   
+}
+.btn-modal{
+    margin-bottom: 15px;
+}
+
+.modal-body li{
+    list-style-type: number;
+}
+
+@media only screen and (max-width: 600px) {
+    
+}
+
+
+
+
+
+
+/* footer */
+footer{
+    padding-top: 2.5rem;
+    background-color: #343a40;
+    text-align: left;
+    font-size: medium;
+}
+ul::before, div.footer-list::before{
+    content: attr(data-header);
+    color: #fff;
+    font-size: 1.5rem;
+}
+.fo0ter-contact{
+    color: #fff;
+}
+footer ul, .footer-list{
+    text-align: left;
+    float: left;
+    /* border: 2px solid red; */
+    padding-bottom: 1rem;
+}
+li{
+    list-style-type: none;
+}
+footer ul li a{
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+}
+footer ul li a:hover{
+    font-weight: bold;
+    text-decoration: none;
+    background: #fff;
+    color: #000;
+}
+.icon-section{
+    text-align: center;
+}
+.fa{
+    color: #fff;
+    padding: 4px;
+    margin-right: 10px;
+}
+.fa-facebook-square{
+    color: blue;
+}
+.fa-instagram{
+    color: red;
+}
+.fa-twitter-square{
+    color: lightblue;
+}
+.Copyright{
+    color: #fff;
+    text-align: center;
+    padding-top: 5px;
+}
