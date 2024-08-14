@@ -1,0 +1,11 @@
+sort1 uses: bubble sort
+
+How do you know?: Because selection and Bubble there is very little time difference between them using reversed5000.txt
+
+sort2 uses: merge sort
+
+How do you know?: Because Merge use least time than others using reversed5000.txt
+
+sort3 uses: selection sort
+
+How do you know?: Because it took much time than the selection and merge using reversed5000.txt
